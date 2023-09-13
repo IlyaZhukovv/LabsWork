@@ -48,7 +48,7 @@ namespace _1laba
 
             for (int i = 0; i < mass.Length; i++)
             {
-               if (mass[i] > max)
+                if (mass[i] > max)
                 {
                     max = mass[i];
                 }
@@ -79,66 +79,56 @@ namespace _1laba
             Console.Write("Введите размер массива: ");
 
             int size = int.Parse(Console.ReadLine());
-            int[] mass2 = new int[size];    
+            int[] mass2 = new int[size];
 
-            
+
             Console.Write($"Массив: ");
             for (int i = 0; i < mass2.Length; i++)
             {
-                mass[i] = rand.Next(1, 100);
-                Console.Write($"{mass[i]} ");
+                mass2[i] = rand.Next(1, 100);
+                Console.Write($"{mass2[i]} ");
             }
-           
+
             Console.WriteLine("\n------------------------------------------------");
             Console.Write("Задание 4: \n");
 
-            int[,] mass3 =
-        {
-            { 1, 2, 3 },
-            { 4, 5, 6 },
-            { 7, 8, 9 },
+            Console.Write("Введите количество строк: ");
+            int rows = int.Parse(Console.ReadLine()); // количество строк
+            Console.Write("Введите количество столбцов: ");
+            int cols = int.Parse(Console.ReadLine()); // количество столбцов
 
-        };
+            List<List<int>> matrix = new List<List<int>>(rows); // создаем список для хранения строк
 
-            int rows = mass3.GetLength(0); // Количество строк
-            int columns = mass3.GetLength(1); // Количество столбцов
-
-            int[] columnSum = new int[columns]; // Массив для хранения сумм значений в каждом столбце
-
-            //Вывод матрицы на экран
-            for (int i = 0; i < 3; i++)
+            // заполняем массив случайными числами
+            Random random = new Random();
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < 3; j++)
+                List<int> row = new List<int>(cols); // создаем список для текущей строки
+                for (int j = 0; j < cols; j++)
                 {
-                    Console.Write(mass3[i, j] + " ");
+                    int randomNumber = random.Next(10); // генерируем случайное число от 0 до 9
+                    row.Add(randomNumber); // добавляем число в текущую строку
                 }
+                matrix.Add(row); // добавляем строку в список
+            }
 
+            // выводим массив на экран
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    Console.Write(matrix[i][j] + " ");
+                }
                 Console.WriteLine();
             }
-            
-            // Вычисляем сумму значений в каждом столбце
-            for (int j = 0; j < columns; j++)
-            {        
-                int sum = 0;
-                for (int i = 0; i < rows; i++)
-                {
-                    sum += mass3[i, j];
-                }
-                columnSum[j] = sum;
-            }
 
-            // Выводим результаты
-            for (int j = 0; j < columns; j++)
-            {
-                Console.WriteLine("Сумма значений по столбцам {0}: {1}",j, columnSum[j]);
-            }
             Console.WriteLine("------------------------------------------------");
             Console.WriteLine("Задание 5: \n");
 
-      
 
-        //Создаем массив структур student
-        student[] students = new student[4];
+
+            //Создаем массив структур student
+            student[] students = new student[5];
 
             students[0].firstName = "Ivan";
             students[0].lastName = "Ermalaev";
@@ -156,9 +146,15 @@ namespace _1laba
             students[3].lastName = "Volkov";
             students[3].age = 19;
 
+            students[4].firstName = "Ivan";
+            students[4].lastName = "Ezhov";
+            students[4].age = 20;
+
+
+
 
             Console.Write($"Список студентов по фамилиям: ");
-            foreach(student s in students)
+            foreach (student s in students)
             {
                 Console.Write($"{s.lastName} ");
             }
@@ -168,8 +164,9 @@ namespace _1laba
             string searchLastname = Console.ReadLine();
 
             Console.WriteLine();
-            
-            
+
+
+            int v = 0;
 
             for (int i = 0; i < students.Length; i++)
             {
@@ -180,16 +177,20 @@ namespace _1laba
                     Console.WriteLine("Фамилия: " + students[i].lastName);
                     Console.WriteLine("Возраст: " + students[i].age);
 
-                    found = true;
-                    break; //
+                    Console.WriteLine();
+
+                    v++;
+
+                    //found = true;
+                    // break; //
                 }
             }
-                if (!found)
-                {
-                    Console.WriteLine("Данного студента с фамилией {0} нет в списке", searchLastname);  
-                }
+            if (v == 0)
+            {
+                Console.WriteLine("Данного студента с фамилией {0} нет в списке", searchLastname);
             }
         }
     }
+}
 
 
